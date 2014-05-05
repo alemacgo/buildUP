@@ -1,19 +1,18 @@
 //
-//  BuildingViewController.m
+//  SignupViewController.m
 //  buildUP
 //
 //  Created by Alejandro Machado on 14/5/5.
 //  Copyright (c) 2014 M-ITI. All rights reserved.
 //
 
-#import "BuildingViewController.h"
-#import <Parse/Parse.h>
+#import "SignupViewController.h"
 
-@interface BuildingViewController ()
+@interface SignupViewController ()
 
 @end
 
-@implementation BuildingViewController
+@implementation SignupViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
     // Do any additional setup after loading the view.
 }
 
@@ -48,4 +46,19 @@
 }
 */
 
+- (IBAction)signup:(id)sender {
+    NSString* email = [self.emailField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* password = self.passwordField.text;
+
+    if ([email length] == 0 || [password length] == 0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Oops!"
+                                                            message:@"Make sure you enter an email address and password!"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    
+    
+}
 @end

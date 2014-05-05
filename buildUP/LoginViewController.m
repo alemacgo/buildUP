@@ -1,19 +1,18 @@
 //
-//  BuildingViewController.m
+//  LoginViewController.m
 //  buildUP
 //
 //  Created by Alejandro Machado on 14/5/5.
 //  Copyright (c) 2014 M-ITI. All rights reserved.
 //
 
-#import "BuildingViewController.h"
-#import <Parse/Parse.h>
+#import "LoginViewController.h"
 
-@interface BuildingViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation BuildingViewController
+@implementation LoginViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
     // Do any additional setup after loading the view.
 }
 
