@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BuildingViewController : UIViewController
+- (IBAction)logout:(id)sender;
 
 @end

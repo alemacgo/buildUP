@@ -27,7 +27,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        NSLog(@"%@", currentUser);
+    }
+    else {
+        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -47,5 +54,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)logout:(id)sender {
+    [PFUser logOut];
+    [self performSegueWithIdentifier:@"showLogin" sender:self];
+}
 
 @end
