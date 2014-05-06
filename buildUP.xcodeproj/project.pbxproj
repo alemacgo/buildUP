@@ -34,6 +34,8 @@
 		7180073F1917A62C005D8EF9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7180073E1917A62C005D8EF9 /* SystemConfiguration.framework */; };
 		718007421917A877005D8EF9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718007411917A877005D8EF9 /* LoginViewController.m */; };
 		718007451917A884005D8EF9 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 718007441917A884005D8EF9 /* SignupViewController.m */; };
+		7180074819197A54005D8EF9 /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7180074719197A54005D8EF9 /* FriendsTableViewController.m */; };
+		7180074B19197D76005D8EF9 /* EditFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7180074A19197D76005D8EF9 /* EditFriendsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,10 @@
 		718007411917A877005D8EF9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		718007431917A884005D8EF9 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		718007441917A884005D8EF9 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		7180074619197A54005D8EF9 /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
+		7180074719197A54005D8EF9 /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
+		7180074919197D76005D8EF9 /* EditFriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditFriendsTableViewController.h; path = ../EditFriendsTableViewController.h; sourceTree = "<group>"; };
+		7180074A19197D76005D8EF9 /* EditFriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditFriendsTableViewController.m; path = ../EditFriendsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,10 @@
 				718007291917A196005D8EF9 /* BuildingViewController.h */,
 				7180072A1917A196005D8EF9 /* BuildingViewController.m */,
 				7180070319179F19005D8EF9 /* Main.storyboard */,
+				7180074619197A54005D8EF9 /* FriendsTableViewController.h */,
+				7180074719197A54005D8EF9 /* FriendsTableViewController.m */,
+				7180074919197D76005D8EF9 /* EditFriendsTableViewController.h */,
+				7180074A19197D76005D8EF9 /* EditFriendsTableViewController.m */,
 				718007431917A884005D8EF9 /* SignupViewController.h */,
 				718007441917A884005D8EF9 /* SignupViewController.m */,
 				718007401917A877005D8EF9 /* LoginViewController.h */,
@@ -309,6 +319,8 @@
 				7180070819179F19005D8EF9 /* ViewController.m in Sources */,
 				7180070219179F19005D8EF9 /* AppDelegate.m in Sources */,
 				718006FE19179F19005D8EF9 /* main.m in Sources */,
+				7180074819197A54005D8EF9 /* FriendsTableViewController.m in Sources */,
+				7180074B19197D76005D8EF9 /* EditFriendsTableViewController.m in Sources */,
 				718007421917A877005D8EF9 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
