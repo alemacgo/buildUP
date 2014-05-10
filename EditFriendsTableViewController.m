@@ -7,7 +7,6 @@
 //
 
 #import "EditFriendsTableViewController.h"
-#import <Parse/Parse.h>
 
 @interface EditFriendsTableViewController ()
 
@@ -29,6 +28,8 @@
             [self.tableView reloadData];
         }
     }];
+
+    self.currentUser = [PFUser currentUser];
 
 }
 
@@ -60,7 +61,21 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    
+    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
+    
+    PFUser *newFriend = [self.allUsers objectAtIndex:indexPath.row];
+    
+    [friendsRelation addObject:newFriend];
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 /*
