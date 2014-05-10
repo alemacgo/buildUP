@@ -7,6 +7,7 @@
 //
 
 #import "EditFriendsTableViewController.h"
+#import <Parse/Parse.h>
 
 @interface EditFriendsTableViewController ()
 
@@ -17,6 +18,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    PFQuery *query = [PFUser query];
+    [query orderByAscending:@"username"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+        else {
+            self.allUsers = objects;
+            [self.tableView reloadData];
+        }
+    }];
 
 }
 
@@ -31,19 +43,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return [self.allUsers count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
+    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
+    cell.textLabel.text = user.username;
     
     return cell;
 }
-*/
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
