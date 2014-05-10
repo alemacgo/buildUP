@@ -65,7 +65,7 @@
                         <barButtonItem key="backBarButtonItem" title="Friends" id="G2Q-M4-ca5"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="PNa-uU-TX4">
                             <connections>
-                                <segue destination="WCJ-vc-fsL" kind="push" id="8kd-QT-Ev5"/>
+                                <segue destination="WCJ-vc-fsL" kind="push" identifier="showEditFriends" id="8kd-QT-Ev5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
