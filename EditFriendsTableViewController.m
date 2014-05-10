@@ -70,13 +70,33 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
+    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
     PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
     
-    PFUser *newFriend = [self.allUsers objectAtIndex:indexPath.row];
+    if ([self isFriend:user]) {
+        // 1. remove the checkmark
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        // 2. Remove from the array of friends
+        // ! inefficient.
+        for (PFUser *friend in self.friends) {
+            if ([friend.objectId isEqualToString:user.objectId]) {
+                [self.friends removeObject:friend];
+                break;
+            }
+        }
+        
+        // 3. Remove from the backend
+        [friendsRelation removeObject:user];
+        
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self.friends addObject:user];
+        [friendsRelation addObject:user];
+    }
     
-    [friendsRelation addObject:newFriend];
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
