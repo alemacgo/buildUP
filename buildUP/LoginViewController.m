@@ -19,7 +19,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-    // Do any additional setup after loading the view.
+    self.emailField.delegate = self;
+    self.passwordField.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,4 +63,16 @@
         }];
     }
 }
+
+- (BOOL) textFieldShouldReturn:(id)sender {
+    if ([self.emailField.text length] && [self.passwordField.text length]) {
+        [self login:sender];
+        return YES;
+    }
+    else {
+        [sender resignFirstResponder];
+        return NO;
+    }
+}
+
 @end

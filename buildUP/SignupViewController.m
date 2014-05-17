@@ -18,7 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.emailField.delegate = self;
+    self.passwordField.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+}
+
+- (BOOL) textFieldShouldReturn:(id)sender {
+    if ([self.emailField.text length] && [self.passwordField.text length]) {
+        [self signup:sender];
+        return YES;
+    }
+    else {
+        [sender resignFirstResponder];
+        return NO;
+    }
 }
 
 /*
@@ -67,4 +85,6 @@
 - (IBAction)dismiss:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 @end
