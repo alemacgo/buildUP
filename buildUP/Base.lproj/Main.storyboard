@@ -20,6 +20,14 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cwb-dY-d05">
+                                <rect key="frame" x="20" y="81" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="YVZ-UY-2KX">
+                                <rect key="frame" x="250" y="81" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -37,6 +45,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="buddyImage" destination="YVZ-UY-2KX" id="wWd-fp-ggs"/>
+                        <outlet property="selfImage" destination="Cwb-dY-d05" id="e7z-T0-V6j"/>
                         <segue destination="vXZ-lx-hvc" kind="push" identifier="showLogin" id="JVl-jE-PCt"/>
                     </connections>
                 </viewController>
@@ -161,7 +171,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hb9-X2-bW5">
                                 <rect key="frame" x="0.0" y="444" width="325" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -294,7 +304,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="blue" width="640" height="960"/>
+        <image name="add" width="100" height="100"/>
+        <image name="blue" width="1" height="1"/>
         <image name="buildings" width="640" height="960"/>
         <image name="buildings-bright" width="640" height="960"/>
         <image name="icon_x" width="11" height="11"/>

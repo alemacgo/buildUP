@@ -17,6 +17,8 @@
                   clientKey:@"28KwKnLvkgvziaXgdJQozV7BoJu3tTtLUg3IvKDR"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     // Override point for customization after application launch.
+    
+    [self customizeUserInterface];
     return YES;
 }
 							
@@ -45,6 +47,23 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Helpers
+- (void)customizeUserInterface {
+    // iOS 7 will replace this following color with a translucent version
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.796 green:0.878 blue:0.949 alpha:1.0]];
+    
+    // This removes the solid border at the bottom of the navbar
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"blue"] forBarMetrics:UIBarMetricsDefault];
+    
+    // This changes the color of the bar buttons
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    
+    // Changes the color of the main title
+    /*[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];*/
 }
 
 @end

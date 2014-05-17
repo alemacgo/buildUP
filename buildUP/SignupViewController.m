@@ -51,6 +51,10 @@
         newUser.username = email;
         newUser.password = password;
         
+        // TODO: Generalize, use regular expressions
+        NSString *displayName = [email stringByReplacingOccurrencesOfString:@"@gmail.com" withString:@""];
+        [newUser setObject:displayName forKey:@"displayName"];
+        
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             // callback mechanism when the signup process is done
             // threads

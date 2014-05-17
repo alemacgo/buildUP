@@ -8,6 +8,7 @@
 
 #import "BuildingViewController.h"
 #import <Parse/Parse.h>
+#import "GravatarUrlBuilder.h"
 
 @interface BuildingViewController ()
 
@@ -35,6 +36,19 @@
     else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
+    
+    // 1. Get email address
+    NSString *email = [currentUser objectForKey:@"username"];
+    NSString *displayName = [currentUser objectForKey:@"displayName"];
+    NSLog(@"%@", displayName);
+    
+    // 2. Create the md5 hash
+    NSURL *gravatarUrl = [GravatarUrlBuilder getGravatarUrl:email];
+    
+    // 3. Request the image from Gravatar
+    NSData *imageData = [NSData dataWithContentsOfURL:gravatarUrl];
+    
+    self.selfImage.image = [UIImage imageWithData:imageData];
     // Do any additional setup after loading the view.
 }
 

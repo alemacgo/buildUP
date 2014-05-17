@@ -10,5 +10,7 @@
 
 @interface BuildingViewController : UIViewController
 - (IBAction)logout:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *selfImage;
+@property (weak, nonatomic) IBOutlet UIImageView *buddyImage;
 
 @end
