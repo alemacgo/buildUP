@@ -534,6 +534,7 @@
 				7180072219179F19005D8EF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7180072319179F19005D8EF9 /* Build configuration list for PBXNativeTarget "buildUPTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +543,7 @@
 				7180072519179F19005D8EF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
