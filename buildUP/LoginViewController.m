@@ -64,6 +64,11 @@
     }
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.emailField resignFirstResponder];
+    [self.passwordField resignFirstResponder];
+}
+
 - (BOOL) textFieldShouldReturn:(id)sender {
     if ([self.emailField.text length] && [self.passwordField.text length]) {
         [self login:sender];
