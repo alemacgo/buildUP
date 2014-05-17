@@ -170,6 +170,8 @@
 		718006F719179F19005D8EF9 /* buildUP */ = {
 			isa = PBXGroup;
 			children = (
+				7180070319179F19005D8EF9 /* Main.storyboard */,
+				7180070919179F19005D8EF9 /* Images.xcassets */,
 				7180070019179F19005D8EF9 /* AppDelegate.h */,
 				7180070119179F19005D8EF9 /* AppDelegate.m */,
 				718007291917A196005D8EF9 /* BuildingViewController.h */,
@@ -178,10 +180,8 @@
 				7180074A19197D76005D8EF9 /* EditFriendsTableViewController.m */,
 				7180074619197A54005D8EF9 /* FriendsTableViewController.h */,
 				7180074719197A54005D8EF9 /* FriendsTableViewController.m */,
-				7180070919179F19005D8EF9 /* Images.xcassets */,
 				718007401917A877005D8EF9 /* LoginViewController.h */,
 				718007411917A877005D8EF9 /* LoginViewController.m */,
-				7180070319179F19005D8EF9 /* Main.storyboard */,
 				718007431917A884005D8EF9 /* SignupViewController.h */,
 				718007441917A884005D8EF9 /* SignupViewController.m */,
 				718006F819179F19005D8EF9 /* Supporting Files */,

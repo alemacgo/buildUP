@@ -18,9 +18,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.hidesBackButton = YES;
-    self.emailField.delegate = self;
     self.passwordField.delegate = self;
+    self.passwordField.returnKeyType = UIReturnKeyGo;
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,19 +64,9 @@
     }
 }
 
-#pragma mark - UITextField delegate methods
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.emailField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
-}
-
 - (BOOL) textFieldShouldReturn:(id)sender {
     if ([self.emailField.text length] && [self.passwordField.text length]) {
         [self login:sender];
-    }
-    else {
-        [sender resignFirstResponder];
     }
     return YES;
 }

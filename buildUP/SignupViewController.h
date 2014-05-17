@@ -15,6 +15,5 @@
 
 - (IBAction)signup:(id)sender;
 - (IBAction)dismiss:(id)sender;
-- (BOOL)textFieldShouldReturn:(id)sender;
 
 @end

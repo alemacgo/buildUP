@@ -18,8 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.emailField.delegate = self;
     self.passwordField.delegate = self;
+    self.passwordField.returnKeyType = UIReturnKeyGo;
     // Do any additional setup after loading the view.
 }
 
@@ -70,22 +70,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - UITextField delegate methods
-
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.emailField resignFirstResponder];
-    [self.passwordField resignFirstResponder];
-}
-
 - (BOOL) textFieldShouldReturn:(id)sender {
     if ([self.emailField.text length] && [self.passwordField.text length]) {
         [self signup:sender];
     }
-    else {
-        [sender resignFirstResponder];
-    }
     return YES;
 }
-
 
 @end
