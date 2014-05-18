@@ -36,6 +36,13 @@
     else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    
+    PFUser *currentUser = [PFUser currentUser];
     
     // 1. Get email address
     NSString *email = [currentUser objectForKey:@"username"];
@@ -48,13 +55,10 @@
     // 3. Request the image from Gravatar
     NSData *imageData = [NSData dataWithContentsOfURL:gravatarUrl];
     
-    self.selfImage.image = [UIImage imageWithData:imageData];
+    if (imageData) {
+        self.selfImage.image = [UIImage imageWithData:imageData];
+    }
     // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
