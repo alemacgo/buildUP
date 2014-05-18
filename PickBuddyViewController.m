@@ -86,7 +86,7 @@
     }];
     
     // We are selecting only one friend, go back
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 /*

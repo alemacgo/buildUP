@@ -7,8 +7,6 @@
 //
 
 #import "WelcomeViewController.h"
-#import <Parse/Parse.h>
-#import "GravatarUrlBuilder.h"
 
 @interface WelcomeViewController ()
 
@@ -29,38 +27,11 @@
 {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-    
-    //self.buddy = [self.currentUser objectForKey:@"buddyUsername"];
-    
-    self.selfDisplayName.text = [[PFUser currentUser] objectForKey:@"displayName"];
-    
-    NSString* buddyDisplayName = [[[PFUser currentUser] objectForKey:@"buddyUsername"] stringByReplacingOccurrencesOfString:@"@gmail.com" withString:@""];
-    
-    self.buddyDisplayName.text = buddyDisplayName;
-    
-    // 1. Get email address
-    NSString *email = [PFUser currentUser].username;
-    // 2. Create the md5 hash
-    NSURL *gravatarUrl = [GravatarUrlBuilder getGravatarUrl:email];
-    
-    // 3. Request the image from Gravatar
-    NSData *imageData = [NSData dataWithContentsOfURL:gravatarUrl];
-    
-    if (imageData) {
-        self.selfImage.image = [UIImage imageWithData:imageData];
-    }
-    else {
-        self.selfImage.image = [UIImage imageNamed:@"user"];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,6 +54,28 @@
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)selectFriend:(id)sender {
+    [self saveData];
+    
+    [self performSegueWithIdentifier:@"showPickBuddy" sender:self];
+}
+
+- (void)saveData {
+    PFUser *user = [PFUser currentUser];
+    NSString* task = self.taskTextField.text;
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber *minutes = [f numberFromString:self.minutesTextField.text];
+    [user setObject:task forKey:@"task"];
+    [user setObject:minutes forKey:@"minutes"];
+    
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end

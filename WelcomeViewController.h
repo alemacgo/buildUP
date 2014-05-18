@@ -11,12 +11,11 @@
 
 @interface WelcomeViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *selfImage;
-@property (weak, nonatomic) IBOutlet UILabel *selfDisplayName;
-
-@property (weak, nonatomic) IBOutlet UIImageView *buddyImage;
-@property (weak, nonatomic) IBOutlet UILabel *buddyDisplayName;
+@property (weak, nonatomic) IBOutlet UITextField *taskTextField;
+@property (weak, nonatomic) IBOutlet UITextField *minutesTextField;
 
 - (IBAction)logout:(id)sender;
+
+- (IBAction)selectFriend:(id)sender;
 
 @end

@@ -188,8 +188,6 @@
 				718007431917A884005D8EF9 /* SignupViewController.h */,
 				718007441917A884005D8EF9 /* SignupViewController.m */,
 				718006F819179F19005D8EF9 /* Supporting Files */,
-				711D1FFE19280123001A812A /* TPKeyboardAvoidingScrollView.h */,
-				711D1FFD19280123001A812A /* TPKeyboardAvoidingScrollView.m */,
 				711D2000192826F3001A812A /* GravatarUrlBuilder.m */,
 				711D2001192826F3001A812A /* GravatarUrlBuilder.h */,
 				7180070619179F19005D8EF9 /* ViewController.h */,
@@ -201,6 +199,8 @@
 		718006F819179F19005D8EF9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				711D1FFE19280123001A812A /* TPKeyboardAvoidingScrollView.h */,
+				711D1FFD19280123001A812A /* TPKeyboardAvoidingScrollView.m */,
 				718006F919179F19005D8EF9 /* buildUP-Info.plist */,
 				718006FA19179F19005D8EF9 /* InfoPlist.strings */,
 				718006FD19179F19005D8EF9 /* main.m */,

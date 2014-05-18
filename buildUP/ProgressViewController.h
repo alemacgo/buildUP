@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "GravatarUrlBuilder.h"
 
 @interface ProgressViewController : UIViewController
 
 - (IBAction)logout:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *selfImage;
+@property (weak, nonatomic) IBOutlet UILabel *selfDisplayName;
+
+@property (weak, nonatomic) IBOutlet UIImageView *buddyImage;
+@property (weak, nonatomic) IBOutlet UILabel *buddyDisplayName;
+
+@property (strong, nonatomic) PFUser *user;
+@property (strong, nonatomic) NSString *buddyUsername;
 
 @end
