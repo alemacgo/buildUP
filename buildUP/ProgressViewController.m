@@ -7,6 +7,8 @@
 //
 
 #import "ProgressViewController.h"
+#define START_X 102
+#define START_Y 329
 
 @interface ProgressViewController ()
 
@@ -42,6 +44,8 @@
             
             NSString* buddyDisplayName = [self.buddyUsername stringByReplacingOccurrencesOfString:@"@gmail.com" withString:@""];
             self.buddyDisplayName.text = buddyDisplayName;
+            
+            [self displayScores];
         }
     }
 }
@@ -82,10 +86,22 @@
     if (imageData) {
         imageView.image = [UIImage imageWithData:imageData];
     }
-    else {
-        imageView.image = [UIImage imageNamed:@"user"];
-    }
 }
 
+- (void)displayScores {
+    //NSNumber *score = @0;
+    [self addBlockInX:START_X AndY:START_Y];
+}
+
+- (void)addBlockInX:(float)x AndY:(float)y {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.backgroundColor = [UIColor blueColor];
+    button.frame = CGRectMake(x, y, 50, 50);
+    [button setTitle:@"Build" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    [self.view addSubview:button];
+
+}
 
 @end
