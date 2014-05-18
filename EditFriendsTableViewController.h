@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong) NSArray *allUsers;
 @property (nonatomic, strong) PFUser *currentUser;
-@property (nonatomic, strong) NSMutableArray *friends;
-
-- (BOOL)isFriend:(PFUser *)user;
+@property (nonatomic, strong) NSString *buddyUsername;
 
 @end

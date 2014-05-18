@@ -29,9 +29,7 @@
 {
     [super viewDidLoad];
     
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        NSLog(@"%@", currentUser);
+    if ([PFUser currentUser]) {
     }
     else {
         [self performSegueWithIdentifier:@"showLogin" sender:self];
@@ -42,13 +40,16 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:NO];
     
-    PFUser *currentUser = [PFUser currentUser];
+    //self.buddy = [self.currentUser objectForKey:@"buddyUsername"];
+    
+    self.selfDisplayName.text = [[PFUser currentUser] objectForKey:@"displayName"];
+    
+    NSString* buddyDisplayName = [[[PFUser currentUser] objectForKey:@"buddyUsername"] stringByReplacingOccurrencesOfString:@"@gmail.com" withString:@""];
+    
+    self.buddyDisplayName.text = buddyDisplayName;
     
     // 1. Get email address
-    NSString *email = [currentUser objectForKey:@"username"];
-    NSString *displayName = [currentUser objectForKey:@"displayName"];
-    NSLog(@"%@", displayName);
-    
+    NSString *email = [PFUser currentUser].username;
     // 2. Create the md5 hash
     NSURL *gravatarUrl = [GravatarUrlBuilder getGravatarUrl:email];
     
@@ -58,7 +59,6 @@
     if (imageData) {
         self.selfImage.image = [UIImage imageWithData:imageData];
     }
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

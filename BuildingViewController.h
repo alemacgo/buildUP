@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface BuildingViewController : UIViewController
-- (IBAction)logout:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIImageView *selfImage;
+@property (weak, nonatomic) IBOutlet UILabel *selfDisplayName;
+
 @property (weak, nonatomic) IBOutlet UIImageView *buddyImage;
+@property (weak, nonatomic) IBOutlet UILabel *buddyDisplayName;
+
+- (IBAction)logout:(id)sender;
 
 @end

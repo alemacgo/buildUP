@@ -62,6 +62,9 @@
     // This changes the color of the bar buttons
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     
+    // This does the same!
+    //[UIBarButtonItem appearance].tintColor = [UIColor whiteColor];
+    
     // Changes the color of the main title
     /*[[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];*/
 }

@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
     PFQuery *query = [PFUser query];
+    [query whereKey:@"username" notEqualTo: [[PFUser currentUser] objectForKey:    @"username"]];
     [query orderByAscending:@"username"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
@@ -53,9 +54,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
     PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
-    cell.textLabel.text = user.username;
+    cell.textLabel.text = [user objectForKey:@"displayName"];
     
-    if ([self isFriend:user]) {
+    if ([self.buddyUsername isEqualToString:[user objectForKey:@"username"]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
@@ -71,37 +72,21 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    PFUser *user = [self.allUsers objectAtIndex:indexPath.row];
-    PFRelation *friendsRelation = [self.currentUser relationForKey:@"friendsRelation"];
-    
-    if ([self isFriend:user]) {
-        // 1. remove the checkmark
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-        // 2. Remove from the array of friends
-        // ! inefficient.
-        for (PFUser *friend in self.friends) {
-            if ([friend.objectId isEqualToString:user.objectId]) {
-                [self.friends removeObject:friend];
-                break;
-            }
-        }
-        
-        // 3. Remove from the backend
-        [friendsRelation removeObject:user];
-        
-    }
-    else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.friends addObject:user];
-        [friendsRelation addObject:user];
-    }
+    PFUser *otherUser = [self.allUsers objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+    NSString* buddyUsername = [otherUser objectForKey:@"username"];
+    [self.currentUser setObject:buddyUsername forKey:@"buddyUsername"];
+    self.buddyUsername = buddyUsername;
     
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
         }
     }];
+    
+    // We are selecting only one friend, go back
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
@@ -112,15 +97,5 @@
     return YES;
 }
 */
-
-#pragma mark - Helper methods
-- (BOOL)isFriend:(PFUser *)user {
-    for (PFUser *friend in self.friends) {
-        if ([friend.objectId isEqualToString:user.objectId]) {
-            return YES;
-        }
-    }
-    return NO;
-}
 
 @end
