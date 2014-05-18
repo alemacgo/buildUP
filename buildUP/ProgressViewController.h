@@ -22,4 +22,8 @@
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSString *buddyUsername;
 
+@property (strong, nonatomic) NSNumber *score;
+@property (strong, nonatomic) NSNumber *buddyScore;
+
+
 @end

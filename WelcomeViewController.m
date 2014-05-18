@@ -70,6 +70,7 @@
     NSNumber *minutes = [f numberFromString:self.minutesTextField.text];
     [user setObject:task forKey:@"task"];
     [user setObject:minutes forKey:@"minutes"];
+    [user setObject:@0 forKey:@"score"];
     
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {

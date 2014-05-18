@@ -9,6 +9,7 @@
 #import "ProgressViewController.h"
 #define START_X 102
 #define START_Y 329
+#define BLOCK_SIZE 49
 
 @interface ProgressViewController ()
 
@@ -73,6 +74,8 @@
     
     // How to pull all data from the user?
     self.buddyUsername = [self.user objectForKey:@"buddyUsername"];
+    
+    self.score = [self.user objectForKey:@"score"];
 }
 
 - (void)setImageView:(UIImageView*)imageView forUser:(NSString*)username {
@@ -86,22 +89,74 @@
     if (imageData) {
         imageView.image = [UIImage imageWithData:imageData];
     }
+    else {
+        imageView.image = [UIImage imageNamed:@"user"];
+    }
+}
+
+- (void)addBlocksForScore:(int)score isLeft:(BOOL)left {
+    int x = START_X;
+    int y = START_Y;
+    if (!left) {
+        x += BLOCK_SIZE;
+    }
+    
+    while (score--) {
+        [self addPastBlockInX: x AndY:y];
+        y -= BLOCK_SIZE;
+    }
+    if (left) {
+        // the left side is the user, we need to add the Build button
+        [self addBuildBlockInX:x AndY:y];
+    }
+}
+
+- (void)addPastBlockInX:(float)x AndY:(float)y {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.backgroundColor = [UIColor colorWithRed:0.937 green:0.918 blue:0.390 alpha:1.000];
+    button.frame = CGRectMake(x, y, 50, 50);
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    button.layer.borderWidth = 1;
+    button.tag = 1;
+    [self.view addSubview:button];
+}
+
+- (void)addBuildBlockInX:(float)x AndY:(float)y {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.backgroundColor = [UIColor colorWithRed:0.960 green:0.949 blue:0.758 alpha:1.000];
+    button.frame = CGRectMake(x, y, 50, 50);
+    [button setTitle:@"Build" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:18];
+    button.layer.borderColor = [UIColor grayColor].CGColor;
+    button.layer.borderWidth = 1;
+    [button addTarget:self action:@selector(beginTimer) forControlEvents:UIControlEventTouchUpInside];
+    button.tag = 1;
+    [self.view addSubview:button];
+}
+
+- (void)beginTimer {
+    self.score = [NSNumber numberWithInt:(self.score.intValue + 1) % 6];
+    [self displayScores];
+    [self.user setObject:self.score forKey:@"score"];
+    
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 - (void)displayScores {
-    //NSNumber *score = @0;
-    [self addBlockInX:START_X AndY:START_Y];
-}
-
-- (void)addBlockInX:(float)x AndY:(float)y {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.backgroundColor = [UIColor blueColor];
-    button.frame = CGRectMake(x, y, 50, 50);
-    [button setTitle:@"Build" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:18];
-    [self.view addSubview:button];
-
+    for (UIView *view in self.view.subviews) {
+        if (view.tag == 1) {
+            [view removeFromSuperview];
+        }
+    }
+    [self addBlocksForScore:self.score.intValue isLeft:YES];
+    [self addBlocksForScore:0 isLeft:NO];
 }
 
 @end
