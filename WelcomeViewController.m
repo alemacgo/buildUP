@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 M-ITI. All rights reserved.
 //
 
-#import "BuildingViewController.h"
+#import "WelcomeViewController.h"
 #import <Parse/Parse.h>
 #import "GravatarUrlBuilder.h"
 
-@interface BuildingViewController ()
+@interface WelcomeViewController ()
 
 @end
 
-@implementation BuildingViewController
+@implementation WelcomeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,11 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if ([PFUser currentUser]) {
-    }
-    else {
-        [self performSegueWithIdentifier:@"showLogin" sender:self];
+    self.navigationItem.hidesBackButton = YES;
+
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
     }
 }
 
@@ -59,6 +58,9 @@
     if (imageData) {
         self.selfImage.image = [UIImage imageWithData:imageData];
     }
+    else {
+        self.selfImage.image = [UIImage imageNamed:@"user"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +82,7 @@
 
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
-    [self performSegueWithIdentifier:@"showLogin" sender:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

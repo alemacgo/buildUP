@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Building View Controller - buildUP-->
+        <!--Welcome View Controller - buildUP-->
         <scene sceneID="WNP-oM-O8w">
             <objects>
-                <viewController id="Q4v-pp-nVI" customClass="BuildingViewController" sceneMemberID="viewController">
+                <viewController id="Q4v-pp-nVI" customClass="WelcomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yo3-qG-Y0R"/>
                         <viewControllerLayoutGuide type="bottom" id="LcH-Ph-6Bu"/>
@@ -63,22 +63,63 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="buddyDisplayName" destination="yRo-R6-mMJ" id="2Z6-qs-cKt"/>
                         <outlet property="buddyImage" destination="YVZ-UY-2KX" id="wWd-fp-ggs"/>
                         <outlet property="selfDisplayName" destination="t2r-af-Dg3" id="Fv1-Cy-AcH"/>
                         <outlet property="selfImage" destination="Cwb-dY-d05" id="e7z-T0-V6j"/>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showLogin" id="JVl-jE-PCt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zye-9W-BlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="108"/>
+            <point key="canvasLocation" x="583" y="138"/>
         </scene>
-        <!--Edit Friends Table View Controller - Invite a friend-->
+        <!--Progress View Controller - buildUP-->
+        <scene sceneID="ZNY-Au-W7k">
+            <objects>
+                <viewController id="UgD-XV-Sij" customClass="ProgressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8m6-c7-Hme"/>
+                        <viewControllerLayoutGuide type="bottom" id="boK-c0-q4y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DDy-VC-vkb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue" translatesAutoresizingMaskIntoConstraints="NO" id="qUw-Py-gi8">
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKL-Wy-JOf">
+                                <rect key="frame" x="144" y="319" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="buildUP" id="0J9-vz-15j">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="Tso-U4-5bn">
+                            <connections>
+                                <action selector="logout:" destination="UgD-XV-Sij" id="Xqg-ab-vzs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showLogin" id="H5W-Gj-eGD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mbj-au-g7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117" y="-487"/>
+        </scene>
+        <!--Pick Buddy View Controller - Invite a friend-->
         <scene sceneID="EUf-eh-qDC">
             <objects>
-                <tableViewController id="WCJ-vc-fsL" customClass="EditFriendsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="WCJ-vc-fsL" customClass="PickBuddyViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4FM-yj-Uqj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +143,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BxW-Mx-Af1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="688"/>
+            <point key="canvasLocation" x="1059" y="138"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -191,11 +232,12 @@
                     <connections>
                         <outlet property="emailField" destination="dSn-yO-CIV" id="na0-Fm-dTC"/>
                         <outlet property="passwordField" destination="I5B-Wb-eiJ" id="UlB-C0-43f"/>
+                        <segue destination="Q4v-pp-nVI" kind="push" identifier="showWelcome" id="x3Q-AF-oCn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="110"/>
+            <point key="canvasLocation" x="583" y="-487"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="bcj-2k-8Hb">
@@ -263,11 +305,12 @@
                     <connections>
                         <outlet property="emailField" destination="XAC-ET-WWa" id="Plb-F8-JaJ"/>
                         <outlet property="passwordField" destination="yN9-OC-yf9" id="tj2-Uw-mKJ"/>
+                        <segue destination="Q4v-pp-nVI" kind="push" identifier="showWelcome" id="4oK-YG-ih3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kly-VT-J07" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1067" y="110"/>
+            <point key="canvasLocation" x="1059" y="-474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1mi-ZS-h3U">
@@ -280,12 +323,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Q4v-pp-nVI" kind="relationship" relationship="rootViewController" id="pL8-GW-b4k"/>
+                        <segue destination="UgD-XV-Sij" kind="relationship" relationship="rootViewController" id="cwa-mB-ME5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iUb-Ts-McZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-351" y="108"/>
+            <point key="canvasLocation" x="-305" y="-487"/>
         </scene>
     </scenes>
     <resources>
@@ -301,4 +344,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="x3Q-AF-oCn"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface BuildingViewController : UIViewController
+@interface WelcomeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *selfImage;
 @property (weak, nonatomic) IBOutlet UILabel *selfDisplayName;

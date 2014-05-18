@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 M-ITI. All rights reserved.
 //
 
-#import "EditFriendsTableViewController.h"
+#import "PickBuddyViewController.h"
 
-@interface EditFriendsTableViewController ()
+@interface PickBuddyViewController ()
 
 @end
 
-@implementation EditFriendsTableViewController
+@implementation PickBuddyViewController
 
 - (void)viewDidLoad
 {
